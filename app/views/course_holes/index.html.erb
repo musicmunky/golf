@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Course Holes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hole number</th>
+      <th>Black length</th>
+      <th>Blue length</th>
+      <th>White length</th>
+      <th>Red length</th>
+      <th>Green length</th>
+      <th>Senior length</th>
+      <th>Par</th>
+      <th>Course</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @course_holes.each do |course_hole| %>
+      <tr>
+        <td><%= course_hole.hole_number %></td>
+        <td><%= course_hole.black_length %></td>
+        <td><%= course_hole.blue_length %></td>
+        <td><%= course_hole.white_length %></td>
+        <td><%= course_hole.red_length %></td>
+        <td><%= course_hole.green_length %></td>
+        <td><%= course_hole.senior_length %></td>
+        <td><%= course_hole.par %></td>
+        <td><%= course_hole.course_id %></td>
+        <td><%= link_to 'Show', course_hole %></td>
+        <td><%= link_to 'Edit', edit_course_hole_path(course_hole) %></td>
+        <td><%= link_to 'Destroy', course_hole, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Course hole', new_course_hole_path %>

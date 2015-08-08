@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hole_number: 1
+  black_length: 1
+  blue_length: 1
+  white_length: 1
+  red_length: 1
+  green_length: 1
+  senior_length: 1
+  par: 1
+  course_id: 1
+
+two:
+  hole_number: 1
+  black_length: 1
+  blue_length: 1
+  white_length: 1
+  red_length: 1
+  green_length: 1
+  senior_length: 1
+  par: 1
+  course_id: 1

@@ -11,7 +11,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150808204443) do
+ActiveRecord::Schema.define(version: 20150808213356) do
+
+  create_table "course_holes", force: :cascade do |t|
+    t.integer  "hole_number",   limit: 4
+    t.integer  "black_length",  limit: 4
+    t.integer  "blue_length",   limit: 4
+    t.integer  "white_length",  limit: 4
+    t.integer  "red_length",    limit: 4
+    t.integer  "green_length",  limit: 4
+    t.integer  "senior_length", limit: 4
+    t.integer  "par",           limit: 4
+    t.integer  "course_id",     limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "name",           limit: 255
+    t.string   "address1",       limit: 255
+    t.string   "address2",       limit: 255
+    t.string   "address3",       limit: 255
+    t.string   "city",           limit: 255
+    t.string   "state",          limit: 255
+    t.integer  "zip",            limit: 4
+    t.integer  "course_type_id", limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "round_holes", force: :cascade do |t|
+    t.integer  "round_id",       limit: 4
+    t.integer  "course_hole_id", limit: 4
+    t.integer  "score",          limit: 4
+    t.integer  "putts",          limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.integer  "course_id",  limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "round_date"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

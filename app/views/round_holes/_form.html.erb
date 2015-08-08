@@ -1,0 +1,33 @@
+<%= form_for(@round_hole) do |f| %>
+  <% if @round_hole.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@round_hole.errors.count, "error") %> prohibited this round_hole from being saved:</h2>
+
+      <ul>
+      <% @round_hole.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :round_id %><br>
+    <%= f.number_field :round_id %>
+  </div>
+  <div class="field">
+    <%= f.label :course_hole_id %><br>
+    <%= f.number_field :course_hole_id %>
+  </div>
+  <div class="field">
+    <%= f.label :score %><br>
+    <%= f.number_field :score %>
+  </div>
+  <div class="field">
+    <%= f.label :putts %><br>
+    <%= f.number_field :putts %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

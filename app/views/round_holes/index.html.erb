@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Round Holes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Round</th>
+      <th>Course hole</th>
+      <th>Score</th>
+      <th>Putts</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @round_holes.each do |round_hole| %>
+      <tr>
+        <td><%= round_hole.round_id %></td>
+        <td><%= round_hole.course_hole_id %></td>
+        <td><%= round_hole.score %></td>
+        <td><%= round_hole.putts %></td>
+        <td><%= link_to 'Show', round_hole %></td>
+        <td><%= link_to 'Edit', edit_round_hole_path(round_hole) %></td>
+        <td><%= link_to 'Destroy', round_hole, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Round hole', new_round_hole_path %>

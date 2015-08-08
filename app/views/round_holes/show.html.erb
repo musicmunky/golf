@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Round:</strong>
+  <%= @round_hole.round_id %>
+</p>
+
+<p>
+  <strong>Course hole:</strong>
+  <%= @round_hole.course_hole_id %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @round_hole.score %>
+</p>
+
+<p>
+  <strong>Putts:</strong>
+  <%= @round_hole.putts %>
+</p>
+
+<%= link_to 'Edit', edit_round_hole_path(@round_hole) %> |
+<%= link_to 'Back', round_holes_path %>

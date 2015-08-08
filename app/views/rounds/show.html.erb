@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @round.course_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @round.user_id %>
+</p>
+
+<p>
+  <strong>Round date:</strong>
+  <%= @round.round_date %>
+</p>
+
+<%= link_to 'Edit', edit_round_path(@round) %> |
+<%= link_to 'Back', rounds_path %>

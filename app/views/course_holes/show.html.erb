@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Hole number:</strong>
+  <%= @course_hole.hole_number %>
+</p>
+
+<p>
+  <strong>Black length:</strong>
+  <%= @course_hole.black_length %>
+</p>
+
+<p>
+  <strong>Blue length:</strong>
+  <%= @course_hole.blue_length %>
+</p>
+
+<p>
+  <strong>White length:</strong>
+  <%= @course_hole.white_length %>
+</p>
+
+<p>
+  <strong>Red length:</strong>
+  <%= @course_hole.red_length %>
+</p>
+
+<p>
+  <strong>Green length:</strong>
+  <%= @course_hole.green_length %>
+</p>
+
+<p>
+  <strong>Senior length:</strong>
+  <%= @course_hole.senior_length %>
+</p>
+
+<p>
+  <strong>Par:</strong>
+  <%= @course_hole.par %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @course_hole.course_id %>
+</p>
+
+<%= link_to 'Edit', edit_course_hole_path(@course_hole) %> |
+<%= link_to 'Back', course_holes_path %>
