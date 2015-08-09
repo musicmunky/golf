@@ -24,13 +24,13 @@
 			</div>
 			<div class="header-search" style="width:50% !important;">
 				<div class="w100fl h100fl" id="srchcont">
-					<%# if user_signed_in? %>
-						Logged in as <strong><%#= "#{current_user.first_name} #{current_user.last_name}" %></strong>!
-						<%#= link_to "(logout)", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-					<%# else %>
-						<%#= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-						<%#= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-					<%# end %>
+					<% if user_signed_in? %>
+						Logged in as <strong><%= "#{current_user.first_name} #{current_user.last_name}" %></strong>!
+						<%= link_to "(logout)", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+					<% else %>
+						<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+						<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+					<% end %>
 				</div>
 			</div>
 		</div>
@@ -39,20 +39,21 @@
 		<div class="navwrapper">
 			<div id="innernavdiv" class="w100fl h100fl">
 				<div id="home-tab" class="navdiv">
-					<a href="<%#= root_url %>" class="navlink">Home</a>
+					<a href="<%= root_url %>" class="navlink">Home</a>
 				</div>
-				<div id="uploads-tab" class="navdiv">
-					<a href="<%#= root_url %>uploads" class="navlink">Uploads</a>
+				<div id="rounds-tab" class="navdiv">
+					<a href="<%= root_url %>rounds" class="navlink">Add a Round</a>
 				</div>
-				<div id="merchants-tab" class="navdiv">
-					<a href="<%#= root_url %>merchants" class="navlink">Merchants</a>
+
+				<div id="courses-tab" class="navdiv">
+					<a href="<%= root_url %>courses" class="navlink">Courses</a>
 				</div>
-				<div id="purchases-tab" class="navdiv">
-					<a href="<%#= root_url %>purchases" class="navlink">Purchases</a>
-				</div>
-				<%# link = !current_user.nil? ? "#{root_url}users/#{current_user.id}/edit" : "" %>
 				<div id="users-tab" class="navdiv">
-					<a href="<%#= link %>" class="navlink">Manage Account</a>
+					<a href="<%= root_url %>users" class="navlink">Players</a>
+				</div>
+				<% link = !current_user.nil? ? "#{root_url}users/#{current_user.id}/edit" : "" %>
+				<div id="users-tab" class="navdiv">
+					<a href="<%= link %>" class="navlink">Manage Account</a>
 				</div>
 			</div>
 		</div>

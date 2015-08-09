@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
 	devise_for :users, :controllers => { registrations: 'registrations' }
+
 	get 'pages/index'
+	get 'admin/index'
 
 	resources :users
 	resources :round_holes
