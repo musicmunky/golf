@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :round_holes
-  resources :rounds
-  resources :course_holes
-  resources :courses
 	devise_for :users, :controllers => { registrations: 'registrations' }
 	get 'pages/index'
 
 	resources :users
+	resources :round_holes
+	resources :rounds
+	resources :course_holes
+	resources :courses
 
 	root 'pages#index'
 
