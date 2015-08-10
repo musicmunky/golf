@@ -8,8 +8,8 @@ $( document ).ready(function() {
 		document.body.style.fontFamily = "'Trebuchet MS', Helvetica, sans-serif";
 	}
 
-	$(".navdiv").each( function() {
-		$(this).css({ "background-color": "#FFF" });
+	$(".golflinks").each( function() {
+		$(this).removeClass("active");
 	});
 
 	var url = window.location.pathname;
@@ -20,13 +20,25 @@ $( document ).ready(function() {
 
 	var urlary = url.split("/");
 	var model = urlary[0];
-	if(FUSION.lib.isBlank(model))
+	if(!FUSION.lib.isBlank(model))
 	{
-		$("#home-tab").css({ "background-color": "#E8EFFF" });
-	}
-	else
-	{
-		$("#" + model + "-tab").css({ "background-color": "#E8EFFF" });
+		if(model == "users")
+		{
+			var id = "users-link";
+			if(urlary.length > 1)
+			{
+				var uid = parseInt(urlary[1]);
+				if(!isNaN(uid))
+				{
+					id += "-" + uid;
+				}
+			}
+			$("#" + id).addClass("active");
+		}
+		else
+		{
+			$("#" + model + "-link").addClass("active");
+		}
 	}
 });
 

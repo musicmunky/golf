@@ -1,13 +1,21 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+<div class="w100fl" style="margin-top:20px;">
+	<label>Already have an account?</label><br />
+	<%= link_to "Log in", new_session_path(resource_name), {class: "btn btn-primary", style: "width:75px;"} %><br />
+</div>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+<div class="w100fl" style="margin-top:20px;">
+	<label>Don't have an account?</label><br />
+	<%= link_to "Sign up", new_registration_path(resource_name), {class: "btn btn-success", style: "width:75px;"} %>
+</div>
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+<div class="w100fl" style="margin-top:20px;">
+	<%= link_to "Forgot your password?", new_password_path(resource_name) %>
+</div>
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
