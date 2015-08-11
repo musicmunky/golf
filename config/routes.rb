@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
-	devise_for :users, :controllers => { registrations: 'registrations' }
+	devise_for :users, :controllers => { registrations: 'registrations' } #, :path_names => {}
 
 	get 'pages/index'
 	get 'admin/index'
 
-	resources :users
+	resources :users#, path_names: { edit: "edit" } do
+	#	get :edit_user_registration
+	#end
 	resources :round_holes
 	resources :rounds
 	resources :course_holes

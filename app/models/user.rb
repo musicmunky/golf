@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
 		# do something before it gets added
 	end
 
+	def self.full_name(u)
+		return "#{u.first_name} #{u.last_name}"
+	end
+
 end

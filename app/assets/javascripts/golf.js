@@ -25,13 +25,10 @@ $( document ).ready(function() {
 		if(model == "users")
 		{
 			var id = "users-link";
-			if(urlary.length > 1)
+			if(urlary.length > 1 && urlary[1] == "edit")
 			{
-				var uid = parseInt(urlary[1]);
-				if(!isNaN(uid))
-				{
-					id += "-" + uid;
-				}
+				var uid = FUSION.get.node("current_user_id").value;
+				id += "-" + uid;
 			}
 			$("#" + id).addClass("active");
 		}

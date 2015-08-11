@@ -28,12 +28,15 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="golflinks" id="rounds-link"><a href="<%= root_url %>rounds">Rounds</a></li>
 					<li class="golflinks" id="courses-link"><a href="<%= root_url %>courses">Courses</a></li>
+					<li class="golflinks" id="rounds-link"><a href="<%= root_url %>rounds">Rounds</a></li>
 					<li class="golflinks" id="users-link"><a href="<%= root_url %>users">Players</a></li>
 					<% if user_signed_in? %>
-						<% link = !current_user.nil? ? "#{root_url}users/#{current_user.id}/edit" : "" %>
+						<% link = !current_user.nil? ? edit_registration_path(current_user) : "" %>
 						<li class="golflinks" id="users-link-<%= current_user.id %>"><a href="<%= link %>">Account</a></li>
+						<% if current_user.has_role? :admin %>
+							<li class="golflinks" id="admin-link"><a href="<%= root_url %>admin">Admin</a></li>
+						<% end %>
 					<% end %>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -43,7 +46,8 @@
 							Logged in as <strong><%= "#{current_user.first_name} #{current_user.last_name}" %></strong>!
 							<%= link_to "(logout)", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
 						<% else %>
-							<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+							<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %>
+							<span style="margin-right:10px;margin-left:10px">|</span>
 							<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
 						<% end %>
 						</p>
@@ -60,12 +64,14 @@
 		<% if alert %>
 			<p class="alert alert-danger"><%= alert %></p>
 		<% end %>
+		<% uid = !current_user.nil? ? current_user.id : 0 %>
+		<input id="current_user_id" value="<%= uid %>" type="hidden" />
 		<%= yield %>
 	</div>
 	<div class="footer">
 		<div class="innerfooter tac">
 			<div class="footer-content-left">
-				<span>Improving your game, one statistic at a time<span id="footerlocation"></span></span>
+				<span style="font-style:italic;">Improving your game, one round at a time<span id="footerlocation"></span></span>
 			</div>
 			<div class="footer-content-right">
 				<span>

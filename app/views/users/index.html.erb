@@ -1,23 +1,32 @@
-<h3>Listing Users</h3>
+<h3>Current Players</h3>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th style="width:100px;text-align:center;">Rounds</th>
+			<th style="width:100px;text-align:center;">Handicap</th>
+			<th colspan="2"></th>
+		</tr>
+	</thead>
 
-  <tbody>
+	<tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+		<tr>
+			<td><%= "#{user.first_name} #{user.last_name}" %></td>
+			<td><%= user.email %></td>
+			<% rndm = Random.new %>
+			<td style="text-align:center;"><%= rndm.rand(50) %></td>
+			<td style="text-align:center;"><%= rndm.rand(50) %></td>
+			<td><%= link_to 'View Profile', user %></td>
+			<td><% if current_user.id == user.id or current_user.has_role? :admin %><%= link_to 'Edit', edit_registration_path(user) %><% end %></td>
+<!--			<td><%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>//-->
+		</tr>
     <% end %>
-  </tbody>
+	</tbody>
 </table>
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', new_user_registration_path, :class => "btn btn-success" %>

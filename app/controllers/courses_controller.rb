@@ -26,6 +26,8 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
 
+	  logger.debug "\n\n\n\n\n\n\nCOURSE NAME IS: #{course_params['name']}\n\n\n\n\n\n\n"
+
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
