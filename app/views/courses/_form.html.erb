@@ -68,6 +68,12 @@
 		</select>
 	</div>
 </div>
+<div class="w100fl">
+	<div class="form-group field">
+		<%= f.label :website %><br>
+		<%= f.text_field :website, class: "form-control", style: "width:100%;" %>
+	</div>
+</div>
 
 <div class="actions" style="margin-top:20px;margin-bottom:30px;width:50%;float:left;">
 	<% btntxt = !@course.id.nil? ? "Update Course" : "Add New Course" %>
