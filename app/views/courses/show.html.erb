@@ -1,44 +1,23 @@
-<p id="notice"><%= notice %></p>
+<h3><%= @course.name %> <span style="font-style:italic;">(<%= @course.course_type.name %> Course)</span></h3>
 
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</p>
+<div class="w100fl">
+	<p><%= @course.address1 %></p>
+	<p><%= @course.address2 %></p>
+	<p><%= @course.address3 %></p>
+	<p><%= @course.city %>, <%= @course.state %> <%= @course.zip %></p>
+</div>
 
-<p>
-  <strong>Address1:</strong>
-  <%= @course.address1 %>
-</p>
+<div id="google-maps-canvas" class="w100fl" style="margin-bottom:20px;">
+	<i>This is where I'll put the google map of the course</i>
+</div>
 
-<p>
-  <strong>Address2:</strong>
-  <%= @course.address2 %>
-</p>
-
-<p>
-  <strong>Address3:</strong>
-  <%= @course.address3 %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @course.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @course.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @course.zip %>
-</p>
-
-<p>
-  <strong>Course type:</strong>
-  <%= @course.course_type_id %>
-</p>
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<div class="w100fl">
+	<div style="float:left;margin-right:30px;">
+		<% if !current_user.nil? and current_user.has_role? :admin %>
+			<%= link_to 'Edit', edit_course_path(@course), class: "btn btn-warning" %>
+		<% end %>
+	</div>
+	<div class="w50fl">
+		<%= link_to 'Back', courses_path, class: "btn btn-default" %>
+	</div>
+</div>

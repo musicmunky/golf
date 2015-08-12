@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,
 			:recoverable, :rememberable, :trackable, :validatable
-
+	has_many :rounds
 
 	def before_add_method(role)
 		# do something before it gets added

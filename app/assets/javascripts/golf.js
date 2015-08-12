@@ -7,6 +7,43 @@ $( document ).ready(function() {
 	{
 		document.body.style.fontFamily = "'Trebuchet MS', Helvetica, sans-serif";
 	}
+/*
+	jQuery("#add_edit_holes_link").click(function(){
+		alert("This is a test!");
+	});
+*/
+	$('#add_edit_course_hole_modal').on('show.bs.modal', function (e) {
+		var ary = e.relatedTarget.id.split("-");
+		var cid = ary[1];
+		FUSION.get.node("modal-window-content").innerHTML = "Hello World! " + cid;
+
+		FUSION.set.overlayMouseWait();
+		$.ajax({
+			type: "GET",
+			url: "/courses/" + cid + "/getCourseHoleInfo",
+			data:{
+				course_id:  cid,
+			},
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader("X-CSRF-Token", $('meta[name="csrf-token"]').attr('content'));
+				xhr.setRequestHeader("Accept", "text/html");
+			},
+			success: function(result){
+				var response = JSON.parse(result);
+				if(response['status'] == "success")
+				{
+					FUSION.get.node("modal-window-content").innerHTML = response['message'];
+				}
+				FUSION.set.overlayMouseNormal();
+				return false;
+			},
+			error: function(){
+				FUSION.set.overlayMouseNormal();
+				FUSION.error.showError("There was a problem retrieving the course hole information");
+			}
+		});
+		//return false;
+	});
 
 	$(".golflinks").each( function() {
 		$(this).removeClass("active");

@@ -47,8 +47,8 @@
 <div class="w100fl">
 	<div class="form-group field">
 		<%= f.label :state %><br>
-		<%#= f.text_field :state, class: "form-control" %>
-		<%= render partial: "shared/state_select", locals: {name: "course[state]", id: "course_state", cssclass: "form-control", cssstyle: "width:50%;"} %>
+		<% mystate = !@course.id.nil? ? @course.state : "NONE" %>
+		<%= render partial: "shared/state_select", locals: {name: "course[state]", id: "course_state", state: mystate, cssclass: "form-control", cssstyle: "width:50%;"} %>
 	</div>
 	<div class="form-group field">
 		<%= f.label :zip %><br>
@@ -59,15 +59,19 @@
 	<div class="form-group field">
 		<%= f.label :course_type_id, "Course Type" %><br>
 		<select name="course[course_type_id]" id="course_course_type_id" class="form-control" style="width:50%;">
-			<option value="" selected>Course Type</option>
+			<option value=""></option>
+			<% slctd = "" %>
 			<% CourseType.all.each do |type| %>
-				<option value="<%= type.id %>"><%= type.name %></option>
+				<% slctd = (!@course.id.nil? and @course.course_type.name == type.name) ? "selected" : "" %>
+				<option value="<%= type.id %>" <%= slctd %>><%= type.name %></option>
 			<% end %>
 		</select>
 	</div>
 </div>
 
 <div class="actions" style="margin-top:20px;margin-bottom:30px;width:50%;float:left;">
-	<%= f.submit "Add New Course", class: "btn btn-success" %>
+	<% btntxt = !@course.id.nil? ? "Update Course" : "Add New Course" %>
+	<% foo = 1 %>
+	<%= f.submit btntxt, class: "btn btn-success" %>
 </div>
 <% end %>

@@ -11,7 +11,11 @@ Rails.application.routes.draw do
 	resources :round_holes
 	resources :rounds
 	resources :course_holes
-	resources :courses
+	resources :courses do
+		member do
+			get "getCourseHoleInfo"
+		end
+	end
 
 	root 'pages#index'
 
