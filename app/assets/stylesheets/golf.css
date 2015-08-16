@@ -30,6 +30,65 @@ p {
 	line-height:24px;
 }
 
+.new_hole_yards {
+	width: 40px;
+	height: 26px;
+}
+
+.new_hole_select {
+	height: 26px;
+}
+
+#add_new_hole_btn {
+	font-weight:bold;
+	min-width:10px !important;
+	padding:0;
+	text-align:center;
+	width:26px !important;
+	height:26px;
+}
+
+.rem_new_hole_btn {
+	font-weight:bold !important;
+	min-width:10px !important;
+	padding:0 !important;
+	text-align:center !important;
+	width:26px !important;
+	height:26px !important;
+	background-color:#D9534F;
+	color:#FFF;
+	border: medium none;
+    border-radius: 4px;
+}
+
+#add_edit_course_hole_thead > tr > th {
+	text-align:center;
+	display:block;
+	width:10%;
+	float:left;
+}
+
+#add_edit_course_hole_tbody {
+	height:200px;
+	overflow-y:auto;
+	display:block;
+}
+
+#add_edit_course_hole_tbody > tr > td {
+	text-align:center;
+	vertical-align: middle;
+	width:10%;
+	float:left;
+	line-height:30px;
+}
+
+#add_edit_course_hole_tbody > tr {
+/* 	border-bottom:1px solid #EEE; */
+	display:block;
+	width:100%;
+	height:45px;
+}
+
 #mainwrapper {
 	position: relative;
 	top: 80px;

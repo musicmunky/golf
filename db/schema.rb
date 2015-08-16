@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812203244) do
+ActiveRecord::Schema.define(version: 20150813150534) do
 
   create_table "course_holes", force: :cascade do |t|
     t.integer  "hole_number",   limit: 4
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150812203244) do
     t.integer  "course_id",     limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "handicap",      limit: 4
   end
 
   create_table "course_types", force: :cascade do |t|

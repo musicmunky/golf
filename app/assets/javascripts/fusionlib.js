@@ -1,4 +1,3 @@
-
 /**
  *	FUSION javascipt library
  *
@@ -778,13 +777,23 @@ FUSION.lib = {
 			{
 				//jQuery( el ).css(styls);
 				var stylename = "";
+				var stylearry = [];
 				for (var key in styls)
 				{
 					stylename = key;
 					if(key.match(/^float/)){
 						stylename = "cssFloat";
 					}
-					el.style[stylename] = styls[key];
+					stylearry = styls[key].split(" ");
+					if(stylearry.length > 1 && stylearry[1] == "!important")
+					{
+						el.style.setProperty(key, styls[key], "important");
+						console.log("STYLES: " + key + "  -  " + styls[key]);
+					}
+					else
+					{
+						el.style[stylename] = styls[key];
+					}
 				}
 			}
 

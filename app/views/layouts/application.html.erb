@@ -89,7 +89,92 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<h4 class="modal-title" id="modal-window-header-label">Add/Edit Course Hole</h4>
 				</div>
-				<div class="modal-body" id="modal-window-content">
+				<div class="modal-body" id="add_edit_course_hole_content" style="max-height:400px;overflow-y:auto;">
+					<input type="hidden" value="" id="add_edit_course_hole_course_id" />
+					<table class="table" id="add_edit_course_hole_table" style="margin-bottom:0px !important;">
+						<thead id="add_edit_course_hole_thead">
+							<tr>
+								<th>
+									<select id="new_hole_number" class="new_hole_select">
+										<option value=""></option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+									</select>
+								</th>
+								<th>
+									<select id="new_hole_par" class="new_hole_select">
+										<option value=""></option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
+								</th>
+								<th><input type="text" class="new_hole_yards" value="" id="new_hole_black" maxlength="3" onkeyup="FUSION.lib.noAlpha(this)" /></th>
+								<th><input type="text" class="new_hole_yards" value="" id="new_hole_blue" maxlength="3" onkeyup="FUSION.lib.noAlpha(this)" /></th>
+								<th><input type="text" class="new_hole_yards" value="" id="new_hole_white" maxlength="3" onkeyup="FUSION.lib.noAlpha(this)" /></th>
+								<th><input type="text" class="new_hole_yards" value="" id="new_hole_red" maxlength="3" onkeyup="FUSION.lib.noAlpha(this)" /></th>
+								<th><input type="text" class="new_hole_yards" value="" id="new_hole_green" maxlength="3" onkeyup="FUSION.lib.noAlpha(this)" /></th>
+								<th><input type="text" class="new_hole_yards" value="" id="new_hole_senior" maxlength="3" onkeyup="FUSION.lib.noAlpha(this)" /></th>
+								<th>
+									<select id="new_hole_handicap" class="new_hole_select">
+										<option value=""></option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+									</select>
+								</th>
+								<th>
+									<input type="button" class="btn btn-primary" value="+" id="add_new_hole_btn" />
+								</th>
+							</tr>
+							<tr>
+								<th>Hole</th>
+								<th>Par</th>
+								<th>Black</th>
+								<th>Blue</th>
+								<th>White</th>
+								<th>Red</th>
+								<th>Green</th>
+								<th>Senior</th>
+								<th>Handicap</th>
+								<th style="color:#FFF;">_</th>
+								<!-- id: integer, course_id: integer -->
+							</tr>
+						</thead>
+						<tbody id="add_edit_course_hole_tbody">
+						</tbody>
+					</table>
 				</div>
 				<div class="modal-footer">
 					<button type="button" style="float:left;" class="btn btn-default" data-dismiss="modal">Close</button>

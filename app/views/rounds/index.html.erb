@@ -1,4 +1,3 @@
-
 <h3>Player Rounds</h3>
 
 <table class="table">
@@ -25,6 +24,6 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Round', new_round_path %>
+<% if !current_user.nil? %>
+	<%= link_to 'New Round', new_round_path %>
+<% end %>

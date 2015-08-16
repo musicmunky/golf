@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+jQuery( document ).ready(function() {
 
 	//IE doesn't like Google fonts...apparently it's Google's fault
 	//at the moment, but whatever...load Web Safe font for IE users
@@ -7,18 +7,24 @@ $( document ).ready(function() {
 	{
 		document.body.style.fontFamily = "'Trebuchet MS', Helvetica, sans-serif";
 	}
-/*
-	jQuery("#add_edit_holes_link").click(function(){
-		alert("This is a test!");
+
+	jQuery("#add_new_hole_btn").click(function(){
+		addNewHole();
 	});
-*/
-	$('#add_edit_course_hole_modal').on('show.bs.modal', function (e) {
+
+	jQuery('#add_edit_course_hole_modal').on('hide.bs.modal', function (e) {
+		clearNewHoleForm();
+	});
+
+	jQuery('#add_edit_course_hole_modal').on('show.bs.modal', function (e) {
 		var ary = e.relatedTarget.id.split("-");
 		var cid = ary[1];
-		FUSION.get.node("modal-window-content").innerHTML = "Hello World! " + cid;
+		clearNewHoleForm();
+
+		FUSION.get.node("add_edit_course_hole_course_id").value = cid;
 
 		FUSION.set.overlayMouseWait();
-		$.ajax({
+		jQuery.ajax({
 			type: "GET",
 			url: "/courses/" + cid + "/getCourseHoleInfo",
 			data:{
@@ -32,7 +38,7 @@ $( document ).ready(function() {
 				var response = JSON.parse(result);
 				if(response['status'] == "success")
 				{
-					FUSION.get.node("modal-window-content").innerHTML = response['message'];
+					//FUSION.get.node("add_edit_course_hole_content").innerHTML = response['message'];
 				}
 				FUSION.set.overlayMouseNormal();
 				return false;
@@ -45,8 +51,8 @@ $( document ).ready(function() {
 		//return false;
 	});
 
-	$(".golflinks").each( function() {
-		$(this).removeClass("active");
+	jQuery(".golflinks").each( function() {
+		jQuery(this).removeClass("active");
 	});
 
 	var url = window.location.pathname;
@@ -67,34 +73,120 @@ $( document ).ready(function() {
 				var uid = FUSION.get.node("current_user_id").value;
 				id += "-" + uid;
 			}
-			$("#" + id).addClass("active");
+			jQuery("#" + id).addClass("active");
 		}
 		else
 		{
-			$("#" + model + "-link").addClass("active");
+			jQuery("#" + model + "-link").addClass("active");
 		}
 	}
 });
 
 
-function verifyUploadName()
+function addNewHole()
 {
-	var fname = FUSION.get.node("data_upload_field").value;
-	var farry = fname.split(".");
-	var ext = farry[farry.length - 1];
+	var num = FUSION.get.node("new_hole_number").value;
+	var par = FUSION.get.node("new_hole_par").value;
+	var hnd = FUSION.get.node("new_hole_handicap").value;
+	var blk = FUSION.get.node("new_hole_black").value;
+	var blu = FUSION.get.node("new_hole_blue").value;
+	var wht = FUSION.get.node("new_hole_white").value;
+	var red = FUSION.get.node("new_hole_red").value;
+	var grn = FUSION.get.node("new_hole_green").value;
+	var sen = FUSION.get.node("new_hole_senior").value;
+	var cid = FUSION.get.node("add_edit_course_hole_course_id").value;
 
-	if(FUSION.lib.isBlank(fname))
+	if(FUSION.lib.isBlank(num))
 	{
-		FUSION.lib.alert("<p style='text-align:center;'>Please be sure to select a file before submitting</p>");
+		alert("Please enter a hole number!");
 		return false;
 	}
 
-	if(ext != "txt" && ext != "tab")
+	if(FUSION.lib.isBlank(par))
 	{
-		alert("EXT IS " + ext);
-		FUSION.lib.alert("<p style='text-align:center;'>Please only upload text files / documents</p>");
+		alert("Please enter a par for this hole!");
 		return false;
 	}
 
-	return true;
+	if(FUSION.lib.isBlank(hnd))
+	{
+		alert("Please enter a handicap for this hole!");
+		return false;
+	}
+
+	if(FUSION.lib.isBlank(blk) && FUSION.lib.isBlank(blu) && FUSION.lib.isBlank(wht) && FUSION.lib.isBlank(red) && FUSION.lib.isBlank(grn) && FUSION.lib.isBlank(sen))
+	{
+		alert("Please enter a yardage for at least one tee!");
+		return false;
+	}
+
+	if(FUSION.get.node("tr_" + cid + "_" + num))
+	{
+		alert("You have already added a hole with that number!");
+		return false;
+	}
+
+	if(FUSION.get.node("handicap_td_" + cid + "_" + hnd))
+	{
+		alert("Please select a different handicap for this hole!");
+		return false;
+	}
+
+	var newtr = FUSION.lib.createHtmlElement({"type":"tr", "attributes":{"id":"tr_" + cid + "_" + num}});
+	var numtd = FUSION.lib.createHtmlElement({"type":"td", "text": num});
+	var partd = FUSION.lib.createHtmlElement({"type":"td", "text": par});
+	var blktd = FUSION.lib.createHtmlElement({"type":"td", "text": blk});
+	var blutd = FUSION.lib.createHtmlElement({"type":"td", "text": blu});
+	var whttd = FUSION.lib.createHtmlElement({"type":"td", "text": wht});
+	var redtd = FUSION.lib.createHtmlElement({"type":"td", "text": red});
+	var grntd = FUSION.lib.createHtmlElement({"type":"td", "text": grn});
+	var sentd = FUSION.lib.createHtmlElement({"type":"td", "text": sen});
+	var hndtd = FUSION.lib.createHtmlElement({"type":"td", "text": hnd, "attributes":{"id":"handicap_td_" + cid + "_" + hnd}});
+	var rmvtd = FUSION.lib.createHtmlElement({"type":"td"});
+	var rmbtn = FUSION.lib.createHtmlElement({"type":"input",
+											  "onclick":"removeNewHole('tr_" + cid + "_" + num + "')",
+											  "attributes":{"class":"rem_new_hole_btn", "type":"button", "value":"-", "alt-text":"Remove this hole"}});
+	rmvtd.appendChild(rmbtn);
+
+	newtr.appendChild(numtd);
+	newtr.appendChild(partd);
+	newtr.appendChild(blktd);
+	newtr.appendChild(blutd);
+	newtr.appendChild(whttd);
+	newtr.appendChild(redtd);
+	newtr.appendChild(grntd);
+	newtr.appendChild(sentd);
+	newtr.appendChild(hndtd);
+	newtr.appendChild(rmvtd);
+	FUSION.get.node("add_edit_course_hole_tbody").appendChild(newtr);
 }
+
+
+function clearNewHoleForm()
+{
+	FUSION.get.node("add_edit_course_hole_course_id").value = "";
+	FUSION.get.node("new_hole_number").selectedIndex = -1;
+	FUSION.get.node("new_hole_par").selectedIndex = -1;
+	FUSION.get.node("new_hole_handicap").selectedIndex = -1;
+	FUSION.get.node("new_hole_black").value = "";
+	FUSION.get.node("new_hole_blue").value = "";
+	FUSION.get.node("new_hole_white").value = "";
+	FUSION.get.node("new_hole_red").value = "";
+	FUSION.get.node("new_hole_green").value = "";
+	FUSION.get.node("new_hole_senior").value = "";
+	FUSION.get.node("add_edit_course_hole_tbody").innerHTML = "";
+}
+
+
+function removeNewHole(rid)
+{
+	var rowid = rid || "";
+	if(FUSION.lib.isBlank(rid))
+	{
+		alert("Unable to remove this row - no row id.\nPlease refesh the page and try again");
+		return false;
+	}
+	FUSION.remove.node(rid);
+}
+
+
