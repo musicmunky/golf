@@ -745,6 +745,7 @@ FUSION.lib = {
 			var click = hash['onclick'];
 			var chnge = hash['onchange'];
 			var keyup = hash['keyup'];
+			var blur  = hash['onblur'];
 			var styls = hash['style'];
 			var attrs = hash['attributes'];
 
@@ -788,7 +789,6 @@ FUSION.lib = {
 					if(stylearry.length > 1 && stylearry[1] == "!important")
 					{
 						el.style.setProperty(key, styls[key], "important");
-						console.log("STYLES: " + key + "  -  " + styls[key]);
 					}
 					else
 					{
@@ -808,6 +808,11 @@ FUSION.lib = {
 				//el.onclick = function(){ showRemoveMentorForm(me_id, mr_id, me_name, mr_name); };
 				//callback issues here with variable assignment...trying this way to see if it will work
 				el.onclick = new Function(click);
+			}
+
+			if(blur && !FUSION.lib.isBlank(blur))
+			{
+				el.onblur = new Function(blur);
 			}
 
 			if(chnge && !FUSION.lib.isBlank(chnge))

@@ -133,20 +133,46 @@ function addNewHole()
 	}
 
 	var newtr = FUSION.lib.createHtmlElement({"type":"tr", "attributes":{"id":"tr_" + cid + "_" + num}});
-	var numtd = FUSION.lib.createHtmlElement({"type":"td", "text": num});
-	var partd = FUSION.lib.createHtmlElement({"type":"td", "text": par});
-	var blktd = FUSION.lib.createHtmlElement({"type":"td", "text": blk});
-	var blutd = FUSION.lib.createHtmlElement({"type":"td", "text": blu});
-	var whttd = FUSION.lib.createHtmlElement({"type":"td", "text": wht});
-	var redtd = FUSION.lib.createHtmlElement({"type":"td", "text": red});
-	var grntd = FUSION.lib.createHtmlElement({"type":"td", "text": grn});
-	var sentd = FUSION.lib.createHtmlElement({"type":"td", "text": sen});
-	var hndtd = FUSION.lib.createHtmlElement({"type":"td", "text": hnd, "attributes":{"id":"handicap_td_" + cid + "_" + hnd}});
+	var numtd = FUSION.lib.createHtmlElement({"type":"td"});
+	var partd = FUSION.lib.createHtmlElement({"type":"td"});
+	var blktd = FUSION.lib.createHtmlElement({"type":"td"});
+	var blutd = FUSION.lib.createHtmlElement({"type":"td"});
+	var whttd = FUSION.lib.createHtmlElement({"type":"td"});
+	var redtd = FUSION.lib.createHtmlElement({"type":"td"});
+	var grntd = FUSION.lib.createHtmlElement({"type":"td"});
+	var sentd = FUSION.lib.createHtmlElement({"type":"td"});
+	var hndtd = FUSION.lib.createHtmlElement({"type":"td"});
+
+	//link to check out for updating the dom after contentEditable update:
+	//https://css-tricks.com/snippets/javascript/saving-contenteditable-content-changes-as-json-with-ajax/
+
+	//link to test browser for compatibility
+	//http://codebits.glennjones.net/editing/events-contenteditable.htm
+
+	var numdv = FUSION.lib.createHtmlElement({"type":"div", "text": num, "attributes":{"contentEditable":true}, "onblur":"checkHoleInfo()"});
+	var pardv = FUSION.lib.createHtmlElement({"type":"div", "text": par, "attributes":{"contentEditable":true}});
+	var blkdv = FUSION.lib.createHtmlElement({"type":"div", "text": blk, "attributes":{"contentEditable":true}});
+	var bludv = FUSION.lib.createHtmlElement({"type":"div", "text": blu, "attributes":{"contentEditable":true}});
+	var whtdv = FUSION.lib.createHtmlElement({"type":"div", "text": wht, "attributes":{"contentEditable":true}});
+	var reddv = FUSION.lib.createHtmlElement({"type":"div", "text": red, "attributes":{"contentEditable":true}});
+	var grndv = FUSION.lib.createHtmlElement({"type":"div", "text": grn, "attributes":{"contentEditable":true}});
+	var sendv = FUSION.lib.createHtmlElement({"type":"div", "text": sen, "attributes":{"contentEditable":true}});
+	var hnddv = FUSION.lib.createHtmlElement({"type":"div", "text": hnd, "attributes":{"id":"handicap_td_" + cid + "_" + hnd, "contentEditable":true}});
+
 	var rmvtd = FUSION.lib.createHtmlElement({"type":"td"});
 	var rmbtn = FUSION.lib.createHtmlElement({"type":"input",
 											  "onclick":"removeNewHole('tr_" + cid + "_" + num + "')",
 											  "attributes":{"class":"rem_new_hole_btn", "type":"button", "value":"-", "alt-text":"Remove this hole"}});
 	rmvtd.appendChild(rmbtn);
+	numtd.appendChild(numdv);
+	partd.appendChild(pardv);
+	blktd.appendChild(blkdv);
+	blutd.appendChild(bludv);
+	whttd.appendChild(whtdv);
+	redtd.appendChild(reddv);
+	grntd.appendChild(grndv);
+	sentd.appendChild(sendv);
+	hndtd.appendChild(hnddv);
 
 	newtr.appendChild(numtd);
 	newtr.appendChild(partd);
@@ -159,6 +185,12 @@ function addNewHole()
 	newtr.appendChild(hndtd);
 	newtr.appendChild(rmvtd);
 	FUSION.get.node("add_edit_course_hole_tbody").appendChild(newtr);
+}
+
+
+function checkHoleInfo()
+{
+	alert("FOOBAR");
 }
 
 

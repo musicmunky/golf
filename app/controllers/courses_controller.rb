@@ -59,6 +59,35 @@ class CoursesController < ApplicationController
 
 	end
 
+
+	def setCourseHoleInfo
+
+		cid = params[:course_id]
+
+		response = {}
+		content  = {}
+		status   = ""
+		message  = ""
+
+		begin
+			@course = Course.find(cid)
+			course_holes = @course.course_holes.order(:hole_number)
+
+			response['status'] = "success"
+			response['message'] = "Updated information on #{c} holes for #{@course.name}"
+			response['content'] = content
+		rescue => error
+			response['status'] = "failure"
+			response['message'] = "Error: #{error.message}"
+			response['content'] = error.backtrace
+			ensure
+			respond_to do |format|
+				format.html { render :json => response.to_json }
+			end
+		end
+
+	end
+
 	# POST /courses
 	# POST /courses.json
 	def create

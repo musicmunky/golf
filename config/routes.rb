@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 	resources :courses do
 		member do
 			get "getCourseHoleInfo"
+			post "setCourseHoleInfo"
 		end
 	end
 
