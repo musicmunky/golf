@@ -20,5 +20,6 @@
 //= require fusionlib
 //= require bootstrap
 //= require golf
+//= require highcharts
 //= require turbolinks
 // require_tree .
