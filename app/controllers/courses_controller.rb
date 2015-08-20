@@ -51,7 +51,7 @@ class CoursesController < ApplicationController
 			response['status'] = "failure"
 			response['message'] = "Error: #{error.message}"
 			response['content'] = error.backtrace
-			ensure
+		ensure
 			respond_to do |format|
 				format.html { render :json => response.to_json }
 			end
@@ -80,7 +80,7 @@ class CoursesController < ApplicationController
 			response['status'] = "failure"
 			response['message'] = "Error: #{error.message}"
 			response['content'] = error.backtrace
-			ensure
+		ensure
 			respond_to do |format|
 				format.html { render :json => response.to_json }
 			end

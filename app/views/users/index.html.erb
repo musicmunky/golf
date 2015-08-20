@@ -7,19 +7,18 @@
 			<th>Email</th>
 			<th style="width:100px;text-align:center;">Rounds</th>
 			<th style="width:100px;text-align:center;">Handicap</th>
-			<th colspan="2"></th>
+			<th colspan="1"></th>
 		</tr>
 	</thead>
 
 	<tbody>
     <% @users.each do |user| %>
 		<tr>
-			<td><%= "#{user.first_name} #{user.last_name}" %></td>
+			<td><%= link_to "#{user.first_name} #{user.last_name}", user %></td>
 			<td><%= user.email %></td>
 			<% rndm = Random.new %>
 			<td style="text-align:center;"><%= rndm.rand(50) %></td>
 			<td style="text-align:center;"><%= rndm.rand(50) %></td>
-			<td><%= link_to 'View Profile', user %></td>
 			<td><% if current_user.id == user.id or current_user.has_role? :admin %><%= link_to 'Edit', edit_registration_path(user) %><% end %></td>
 <!--			<td><%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>//-->
 		</tr>
