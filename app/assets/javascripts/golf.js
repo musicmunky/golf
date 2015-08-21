@@ -149,7 +149,7 @@ function addNewHole()
 	//link to test browser for compatibility
 	//http://codebits.glennjones.net/editing/events-contenteditable.htm
 
-	var numdv = FUSION.lib.createHtmlElement({"type":"div", "text": num, "attributes":{"contentEditable":true}, "onblur":"checkHoleInfo()"});
+	var numdv = FUSION.lib.createHtmlElement({"type":"div", "text": num, "attributes":{"contentEditable":true}, "onblur":"checkHoleInfo(this)"});
 	var pardv = FUSION.lib.createHtmlElement({"type":"div", "text": par, "attributes":{"contentEditable":true}});
 	var blkdv = FUSION.lib.createHtmlElement({"type":"div", "text": blk, "attributes":{"contentEditable":true}});
 	var bludv = FUSION.lib.createHtmlElement({"type":"div", "text": blu, "attributes":{"contentEditable":true}});
@@ -188,25 +188,26 @@ function addNewHole()
 }
 
 
-function checkHoleInfo()
+function checkHoleInfo(t)
 {
-	alert("FOOBAR");
+	var h = t.innerHTML;
+	alert("HTML IS: " + h + "  DATA-NAME IS: " + d);
 }
 
 
 function clearNewHoleForm()
 {
-	FUSION.get.node("add_edit_course_hole_course_id").value = "";
-	FUSION.get.node("new_hole_number").selectedIndex = -1;
-	FUSION.get.node("new_hole_par").selectedIndex = -1;
-	FUSION.get.node("new_hole_handicap").selectedIndex = -1;
-	FUSION.get.node("new_hole_black").value = "";
-	FUSION.get.node("new_hole_blue").value = "";
-	FUSION.get.node("new_hole_white").value = "";
-	FUSION.get.node("new_hole_red").value = "";
-	FUSION.get.node("new_hole_green").value = "";
-	FUSION.get.node("new_hole_senior").value = "";
-	FUSION.get.node("add_edit_course_hole_tbody").innerHTML = "";
+	FUSION.get.node("add_edit_course_hole_course_id").value	= "";
+	FUSION.get.node("new_hole_black").value					= "";
+	FUSION.get.node("new_hole_blue").value					= "";
+	FUSION.get.node("new_hole_white").value					= "";
+	FUSION.get.node("new_hole_red").value					= "";
+	FUSION.get.node("new_hole_green").value					= "";
+	FUSION.get.node("new_hole_senior").value				= "";
+	FUSION.get.node("add_edit_course_hole_tbody").innerHTML	= "";
+	FUSION.get.node("new_hole_number").selectedIndex		= -1;
+	FUSION.get.node("new_hole_par").selectedIndex			= -1;
+	FUSION.get.node("new_hole_handicap").selectedIndex		= -1;
 }
 
 
