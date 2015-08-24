@@ -34,6 +34,8 @@ gem 'rolify'
 # gem 'unicorn'
 gem 'passenger'
 
+gem 'awesome_print', require:"ap"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -48,3 +50,6 @@ group :development, :test do
   gem 'spring'
 end
 
+group :development do
+  gem 'awesome_print', require:"ap"
+end
