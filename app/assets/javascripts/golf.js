@@ -149,21 +149,23 @@ function addNewHole()
 	//link to test browser for compatibility
 	//http://codebits.glennjones.net/editing/events-contenteditable.htm
 
-	var numdv = FUSION.lib.createHtmlElement({"type":"div", "text": num, "attributes":{"contentEditable":true}, "onblur":"checkHoleInfo(this)"});
-	var pardv = FUSION.lib.createHtmlElement({"type":"div", "text": par, "attributes":{"contentEditable":true}});
-	var blkdv = FUSION.lib.createHtmlElement({"type":"div", "text": blk, "attributes":{"contentEditable":true}});
-	var bludv = FUSION.lib.createHtmlElement({"type":"div", "text": blu, "attributes":{"contentEditable":true}});
-	var whtdv = FUSION.lib.createHtmlElement({"type":"div", "text": wht, "attributes":{"contentEditable":true}});
-	var reddv = FUSION.lib.createHtmlElement({"type":"div", "text": red, "attributes":{"contentEditable":true}});
-	var grndv = FUSION.lib.createHtmlElement({"type":"div", "text": grn, "attributes":{"contentEditable":true}});
-	var sendv = FUSION.lib.createHtmlElement({"type":"div", "text": sen, "attributes":{"contentEditable":true}});
-	var hnddv = FUSION.lib.createHtmlElement({"type":"div", "text": hnd, "attributes":{"id":"handicap_td_" + cid + "_" + hnd, "contentEditable":true}});
+	var numin = FUSION.lib.createHtmlElement({"type":"input", "attributes":{"type":"hidden", "value":num}});
+	var numdv = FUSION.lib.createHtmlElement({"type":"div", "text": num, "attributes":{"contentEditable":true, "class":"editholediv"}, "onblur":"checkHoleInfo(this)"});
+	var pardv = FUSION.lib.createHtmlElement({"type":"div", "text": par, "attributes":{"contentEditable":true, "class":"editholediv"}});
+	var blkdv = FUSION.lib.createHtmlElement({"type":"div", "text": blk, "attributes":{"contentEditable":true, "class":"editholediv"}});
+	var bludv = FUSION.lib.createHtmlElement({"type":"div", "text": blu, "attributes":{"contentEditable":true, "class":"editholediv"}});
+	var whtdv = FUSION.lib.createHtmlElement({"type":"div", "text": wht, "attributes":{"contentEditable":true, "class":"editholediv"}});
+	var reddv = FUSION.lib.createHtmlElement({"type":"div", "text": red, "attributes":{"contentEditable":true, "class":"editholediv"}});
+	var grndv = FUSION.lib.createHtmlElement({"type":"div", "text": grn, "attributes":{"contentEditable":true, "class":"editholediv"}});
+	var sendv = FUSION.lib.createHtmlElement({"type":"div", "text": sen, "attributes":{"contentEditable":true, "class":"editholediv"}});
+	var hnddv = FUSION.lib.createHtmlElement({"type":"div", "text": hnd, "attributes":{"id":"handicap_td_" + cid + "_" + hnd, "contentEditable":true, "class":"editholediv"}});
 
 	var rmvtd = FUSION.lib.createHtmlElement({"type":"td"});
 	var rmbtn = FUSION.lib.createHtmlElement({"type":"input",
 											  "onclick":"removeNewHole('tr_" + cid + "_" + num + "')",
 											  "attributes":{"class":"rem_new_hole_btn", "type":"button", "value":"-", "alt-text":"Remove this hole"}});
 	rmvtd.appendChild(rmbtn);
+	numtd.appendChild(numin);
 	numtd.appendChild(numdv);
 	partd.appendChild(pardv);
 	blktd.appendChild(blkdv);
@@ -191,7 +193,7 @@ function addNewHole()
 function checkHoleInfo(t)
 {
 	var h = t.innerHTML;
-	alert("HTML IS: " + h + "  DATA-NAME IS: " + d);
+	alert("HTML IS: " + h);
 }
 
 

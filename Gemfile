@@ -32,6 +32,7 @@ gem 'rolify'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'passenger'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

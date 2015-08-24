@@ -27,7 +27,7 @@
 			</td>
 			<td><%= course.course_type.name %></td>
 			<% if !current_user.nil? and current_user.has_role? :admin %>
-				<td><a href="javascript:void(0)" id="add_edit_holes_link-<%= course.id %>" data-toggle="modal" data-target="#add_edit_course_hole_modal">Add/Edit Holes</a></td>
+				<td><a id="add_edit_holes_link-<%= course.id %>" data-toggle="modal" data-target="#add_edit_course_hole_modal" style="cursor:pointer;">Add/Edit Holes</a></td>
 				<td><%= link_to 'Edit', edit_course_path(course) %></td>
 				<td><%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			<% end %>
