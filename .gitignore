@@ -13,3 +13,5 @@
 /tmp
 
 config/database.yml
+passenger.3001.pid
+passenger.3001.pid.lock
